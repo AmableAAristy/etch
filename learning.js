@@ -1,12 +1,12 @@
 const container= document.querySelector('#container');
 let gridSize = 16;
 function gridCreate(gridSize){
-for (let i = 0; i < gridSize; i++){
-    let row = document.createElement('div');
+    let divSize = 100 / gridSize;
+    for (let i = 0; i < gridSize; i++){
+        let row = document.createElement('div');
     
-    row.style.display = 'flex';
-    row.style.flexDirection = 'column';
-    // row.style.width = '10px'
+        row.style.display = 'flex';
+        row.style.width = '100%';
     container.appendChild(row);
 
     for (let j = 0; j < gridSize; j++){
@@ -14,9 +14,9 @@ for (let i = 0; i < gridSize; i++){
         div.style.borderColor = 'black';
         div.style.borderStyle = 'solid';
         div.style.borderWidth = '1px';
-        div.style.width = '20px';
-        div.style.height = '20px';
-        div.style.display.flex;
+        div.style.width = `${divSize}%`;
+
+        div.style.display = 'flex';
         row.appendChild(div);
 
 
@@ -27,9 +27,9 @@ for (let i = 0; i < gridSize; i++){
 gridCreate(gridSize);
 
 const size = document.querySelector('#araara');
-    size.addEventListener('click', () =>{
-        // alert('Choose a number and it shall be. Min:1 Max:100');
-         gridSize = prompt('Choose a number and it shall be. Min:1 Max:100');
+    size.addEventListener('click', () => {
+        
+        gridSize = prompt('Choose a number and it shall be. Min:1 Max:100');
         if (gridSize > 100){
             gridSize = 100;
             alert('Defaulted to 100.')
@@ -52,3 +52,13 @@ const size = document.querySelector('#araara');
             div.remove();
         })
     }
+
+const reset = document.querySelector('#reset');
+    reset.addEventListener('click', () => {
+        const divs = container.querySelectorAll('div');
+        divs.forEach(div => {
+            div.style.backgroundColor = 'white';
+        })
+
+    })
+
